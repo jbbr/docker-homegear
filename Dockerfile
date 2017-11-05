@@ -1,13 +1,14 @@
-FROM resin/rpi-raspbian:jessie
+FROM resin/rpi-raspbian:stretch
 MAINTAINER Janek Thomaschewski <janek_docker@jbbr.net>
 #MAINTAINER Heiner Peuser <heiner.peuser@weweave.net>
 
 RUN apt-get update && \
     apt-get install -y apt-transport-https wget && \
     wget https://homegear.eu/packages/Release.key && apt-key add Release.key && rm Release.key && \
-    echo 'deb https://homegear.eu/packages/Raspbian/ jessie/' >> /etc/apt/sources.list.d/homegear.list && \
+    echo 'deb https://homegear.eu/packages/Raspbian/ stretch/' >> /etc/apt/sources.list.d/homegear.list && \
     apt-get update && \
-    apt-get -y install homegear homegear-homematicbidcos homegear-homematicwired homegear-insteon homegear-max homegear-philipshue homegear-sonos homegear-kodi homegear-ipcam homegear-beckhoff homegear-knx && \
+    apt-get -y install homegear homegear-nodes-core && \
+    apt-get -y install homegear-homematicbidcos homegear-homematicwired homegear-insteon homegear-max homegear-philipshue homegear-sonos homegear-kodi homegear-ipcam homegear-beckhoff homegear-knx homegear-intertechno && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
